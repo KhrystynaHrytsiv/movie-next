@@ -1,5 +1,5 @@
 import {IMovie} from "@/src/interfaces/IMovie";
-import {poster} from "@/src/components/constants/url";
+import {poster} from "@/src/constants/url";
 import Link from "next/link";
 
 const Movie = ({movie}:{movie:IMovie}) => {

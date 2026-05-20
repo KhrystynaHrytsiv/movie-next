@@ -8,9 +8,9 @@ interface IProp {
 }
 const MovieDetailsPage:FC<IProp> = async ({params}) => {
     const {id} = await params;
-    const movie = await generalService.getById<IMDetails>(`movie`, id);
+    const movie = await generalService.get<IMDetails>(`movie/${id}`);
     return (
-        <div className='w-80% m-auto'>
+        <div className='w-4/5 m-auto text-xl'>
           <MovieDetails movie={movie}/>
         </div>
     );
