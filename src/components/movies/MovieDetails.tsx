@@ -4,7 +4,9 @@ import {generalService} from "@/src/services/generalService";
 import {IResCast} from "@/src/interfaces/IActor";
 import {IResVideo} from "@/src/interfaces/IVideo";
 import Link from "next/link";
-// import trailer from "@/src/components/trailer/Trailer";
+import {IMovie} from "@/src/interfaces/IMovie";
+import {IResponse} from "@/src/interfaces/IResponse";
+import Movie from "@/src/components/movies/Movie";
 
 
 const MovieDetails = async ({movie}:{movie:IMDetails}) => {
@@ -12,6 +14,8 @@ const MovieDetails = async ({movie}:{movie:IMDetails}) => {
     const {cast:actors} = await generalService.get<IResCast>(`/movie/${id}/credits`);
     const {results:video} = await generalService.get<IResVideo>(`/movie/${id}/videos`);
     const trailer =  video.find(v => v.site === 'YouTube' && v.type === 'Trailer');
+    const {results:recommendations} = await generalService.get<IResponse>(`movie/${id}/recommendations`);
+
     return (
         <div className='w-full leading-relaxed'>
             <div className="relative h-[450px] w-full overflow-hidden rounded-4xl my-20">
@@ -68,9 +72,13 @@ const MovieDetails = async ({movie}:{movie:IMDetails}) => {
                             <p className='my-auto'>{actor.name}</p>
                         </div>)}
                     </div>
-                    <hr/>
-                    <div></div>
                 </div>
+            </div>
+            <hr/>
+            <h3 className='text-3xl font-semibold m-10 text-center'>Recommendations</h3>
+            <div className='flex justify-between my-10'>
+                {recommendations && (recommendations.slice(0, 5).map(movie => <div key={movie.id}>
+                    <Movie movie={movie}/></div>))}
             </div>
         </div>
     );
