@@ -1,7 +1,8 @@
 import MovieDetails from "@/src/components/movies/MovieDetails";
 import {FC} from "react";
 import {generalService} from "@/src/services/generalService";
-import IMDetails from "@/src/interfaces/IMDetails";
+import {IMDetails} from "@/src/interfaces";
+
 
 interface IProp {
     params:Promise<{id:string}>

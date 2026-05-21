@@ -1,4 +1,4 @@
-import {IMovie} from "@/src/interfaces/IMovie";
+import {IMovie} from "@/src/interfaces";
 import {poster} from "@/src/constants/url";
 import Link from "next/link";
 

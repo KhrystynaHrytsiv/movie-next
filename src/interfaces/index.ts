@@ -1,0 +1,5 @@
+export * from './IResponse'
+export * from './IMovie'
+export * from './IVideo'
+export * from './IActor'
+export * from './IMDetails'

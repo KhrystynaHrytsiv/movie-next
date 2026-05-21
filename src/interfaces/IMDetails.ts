@@ -1,4 +1,4 @@
-export default interface IMDetails {
+export interface IMDetails {
    adult: boolean;
    backdrop_path: string;
    budget: number;

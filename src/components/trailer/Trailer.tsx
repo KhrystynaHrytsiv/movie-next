@@ -1,5 +1,5 @@
 import {generalService} from "@/src/services/generalService";
-import {IResVideo} from "@/src/interfaces/IVideo";
+import {IResVideo} from "@/src/interfaces";
 
 const Trailer = async ({id}:{id:string}) => {
     const {results:video} = await generalService.get<IResVideo>(`/movie/${id}/videos`);

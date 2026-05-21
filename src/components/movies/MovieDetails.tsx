@@ -1,13 +1,8 @@
-import IMDetails from "@/src/interfaces/IMDetails";
 import {photo, poster} from "@/src/constants/url";
 import {generalService} from "@/src/services/generalService";
-import {IResCast} from "@/src/interfaces/IActor";
-import {IResVideo} from "@/src/interfaces/IVideo";
 import Link from "next/link";
-import {IMovie} from "@/src/interfaces/IMovie";
-import {IResponse} from "@/src/interfaces/IResponse";
 import Movie from "@/src/components/movies/Movie";
-
+import {IMDetails, IResCast, IResponse, IResVideo} from "@/src/interfaces";
 
 const MovieDetails = async ({movie}:{movie:IMDetails}) => {
     const {id, title, poster_path, genres, overview, release_date, runtime, production_countries, production_companies, vote_average, tagline} = movie;
