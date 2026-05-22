@@ -27,7 +27,7 @@ const Header = () => {
                <ul className=' w-1/2 flex justify-between h-full items-center'>
                    <li><Link href={'/'}>Home</Link></li>
                    <li><Link href={'/movies'}>Movies</Link></li>
-                   <li><SearchIcon fontSize={'large'}/> Search</li>
+                   <li><Link href={'/search'}><SearchIcon fontSize={'large'}/> Search</Link></li>
                </ul>
                <div>Theme <Switch checked={theme=== 'light'} onChange={changeTheme}/></div>
            </div>

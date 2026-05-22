@@ -53,7 +53,7 @@ const MovieDetails = async ({movie}:{movie:IMDetails}) => {
                     </div>
                 </div>
                 <div className='flex flex-col gap-8 w-2/3 mb-20'>
-                    <h2>{tagline}</h2>
+                    <h2>{tagline || title}</h2>
                     <hr/>
                     <div className='flex gap-4'>{genres.map((genre, index) => <span
                         key={genre.id}> {genre.name}{index !== genres.length - 1 && ','}</span>)}</div>

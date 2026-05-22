@@ -1,21 +1,17 @@
-import {FC} from "react";
-import {generalService} from "@/src/services/generalService";
+import Link from "next/link";
 
 interface IProp{
-    searchParams: Promise<{page:string}>
+    currentPage:number,
+    totalPages:number,
+    query:string
 }
-const Pagination:FC<IProp> = async ({searchParams}) => {
-    const {page} = await searchParams;
-    const currentPage = Number(page || 1)
-
-    const res = await generalService.get('discover/movie?page=${currentPage}');
+const Pagination = ({currentPage, totalPages, query}:IProp) => {
 
     return (
-        <div>
-            <div className="flex gap-4 mt-4">
-                {currentPage > 1 && (<a href={`?page=${currentPage - 1}`}>Previous</a>)}
-                <a href={`?page=${currentPage + 1}`}>Next</a>
-            </div>
+        <div className="w-full flex justify-center items-center gap-4 my-4 text-2xl ">
+            {currentPage > 1 && (<Link href={`/movies?query=${query}&page=${currentPage - 1}`}>Previous</Link>)}
+            <span>{currentPage} / {totalPages}</span>
+            {currentPage < totalPages && (<Link href={`/movies?query=${query}&page=${currentPage + 1}`}>Next</Link>)}
         </div>
     );
 }
