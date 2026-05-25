@@ -6,6 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 const Header = () => {
     const [theme, setTheme] = useState('dark');
+    const [showSearch, setShowSearch] = useState(false);
 
     useEffect(() => {
         const html = document.documentElement;
@@ -22,15 +23,23 @@ const Header = () => {
 
     return (
         <header className='w-full h-[100px] bg-[#c4c1c1] dark:bg-gray-800 opacity-80'>
-           <div className='w-3/4 h-full m-auto flex justify-between items-center text-2xl '>
-               <h2>TMDb</h2>
-               <ul className=' w-1/2 flex justify-between h-full items-center'>
-                   <li><Link href={'/'}>Home</Link></li>
-                   <li><Link href={'/movies'}>Movies</Link></li>
-                   <li><Link href={'/search'}><SearchIcon fontSize={'large'}/> Search</Link></li>
-               </ul>
-               <div>Theme <Switch checked={theme=== 'light'} onChange={changeTheme}/></div>
-           </div>
+            <div className='w-3/4 h-full m-auto flex justify-between items-center text-2xl '>
+                <h2>TMDb</h2>
+                <ul className=' w-1/2 flex justify-evenly h-full items-center'>
+                    <li><Link href={'/'}>Home</Link></li>
+                    <li><Link href={'/movies'}>Movies</Link></li>
+                </ul>
+                <div onFocus={() => setShowSearch(true)} onBlur={(e) => {
+                        if (!e.currentTarget.contains(e.relatedTarget)) setShowSearch(false)}}>
+                    <form method='GET' action='/movies' className='flex gap-4'>
+                        <input type='text' name='query' placeholder='Search'
+                            className={`bg-transparent outline-none border-b border-current  placeholder:text-current transition-all duration-300 overflow-hidden 
+                            ${showSearch ? 'w-[200px] opacity-100 px-2' : 'w-0 opacity-0'}`}/>
+                        <button type='submit'><SearchIcon fontSize='large'/></button>
+                    </form>
+                </div>
+                <div>Theme <Switch checked={theme === 'light'} onChange={changeTheme}/></div>
+            </div>
         </header>
     );
 };
