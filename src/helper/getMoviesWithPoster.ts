@@ -1,25 +1,23 @@
-import {generalService} from "@/src/services/generalService";
-import {IResponse} from "@/src/interfaces";
+import { generalService } from "@/src/services/generalService";
+import { IResponse } from "@/src/interfaces";
 
-export async function getMoviesWithPosters(endpoint: string, startPage: number) {
-    let page = startPage;
-    let totalPages = 1;
-    const collected = [];
-    // const seen = new Set<number>();
-    while (collected.length < 20 && page <= totalPages) {
-        const url = endpoint.includes("?") ? `${endpoint}&page=${page}` : `${endpoint}?page=${page}`;
+export async function getMoviesWithPosters(endpoint: string, currentPage: number){
+    const seen = new Set<number>();
+    let apiPage = 1;
+    let totalApiPages = 1;
+    const allMovies = [];
+    while(apiPage <= totalApiPages){
+        const url = endpoint.includes("?") ? `${endpoint}&page=${apiPage}` : `${endpoint}?page=${apiPage}`;
         const data = await generalService.get<IResponse>(url);
-        const results = data?.results ?? [];
-        totalPages = data?.total_pages ?? 1;
-        const filtered = results
-            .filter((m) => m.poster_path)
-        //     .filter((m) => !seen.has(m.id));
-        // filtered.forEach((m) => seen.add(m.id));
-        collected.push(...filtered);
-        page++;
+        totalApiPages = data.total_pages ?? 1;
+        const filtered = (data.results ?? []).filter(movie => movie.poster_path && !seen.has(movie.id));
+        filtered.forEach(movie => seen.add(movie.id));
+        allMovies.push(...filtered);
+        apiPage++;
     }
-    return {
-        movies: collected.slice(0, 20),
-        total_pages: totalPages,
-    };
+    const totalPages = Math.ceil(allMovies.length / 20);
+    const start = (currentPage - 1) * 20;
+    const movies = allMovies.slice(start, start + 20);
+
+    return {movies, totalPages, hasNextPage: currentPage < totalPages};
 }
