@@ -3,15 +3,27 @@ import Link from "next/link";
 interface IProp{
     currentPage:number,
     totalPages:number,
-    hasNextPage: boolean;
-    query:string
+    hasNextPage: boolean,
+    query:string,
+    genre:string,
+    year:string,
+    rating:string
 }
-const Pagination = ({currentPage,  query,  totalPages, hasNextPage}:IProp) => {
+const Pagination = ({currentPage,  query,  totalPages, hasNextPage, genre, year, rating}:IProp) => {
 
     const createPageLink = (page: number) => {
         const params = new URLSearchParams();
         if (query) {
             params.set("query", query);
+        }
+        if(genre){
+            params.set('genre', genre)
+        }
+        if(year){
+            params.set('year', year)
+        }
+        if(rating){
+            params.set('rating', rating)
         }
         params.set("page", page.toString());
         return `/movies?${params.toString()}`;

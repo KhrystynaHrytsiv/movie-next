@@ -15,9 +15,7 @@ const Filters = async ({currentGenre, currentYear, currentRating}:IProps) => {
 
     return (
         <form method="GET" action="/movies" className='flex gap-10 p-4 rounded-xl bg-gray-700/30'>
-            <select name='genre' defaultValue={currentGenre || ''} className='px-4 py-2
-                    rounded-full
-                    bg-gray-700'>
+            <select name='genre' defaultValue={currentGenre || ''} className='px-4 py-2 rounded-full bg-gray-700'>
                 <option value=''>All Genres</option>
                 {genres && genres.map(genre=>(<option key={genre.id} value={genre.id}>{genre.name}</option>))}
             </select>
