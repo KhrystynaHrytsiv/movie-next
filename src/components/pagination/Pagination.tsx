@@ -1,4 +1,5 @@
 import Link from "next/link";
+import {buildParams} from "@/src/helper/buildEndpoint";
 
 interface IProp{
     currentPage:number,
@@ -11,14 +12,8 @@ interface IProp{
 const Pagination = ({currentPage,  query,  totalPages, genre, year, rating}:IProp) => {
 
     const createPageLink = (page: number) => {
-        const params = new URLSearchParams();
-        if (query) params.set("query", query);
-        if(genre) params.set('genre', genre)
-        if(year) params.set('year', year)
-        if(rating) params.set('rating', rating)
-
-        params.set("page", page.toString());
-        return `/movies?${params.toString()}`;
+        const params = buildParams({query, genre, year, rating, page})
+        return `/movies?${params.toString()}`
     };
 
     return (
