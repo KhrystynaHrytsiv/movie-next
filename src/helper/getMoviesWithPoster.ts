@@ -19,5 +19,5 @@ export async function getMoviesWithPosters(endpoint: string, currentPage: number
     const start = (currentPage - 1) * 20;
     const movies = allMovies.slice(start, start + 20);
 
-    return {movies, totalPages, hasNextPage: currentPage < totalPages};
+    return {movies, totalPages};
 }

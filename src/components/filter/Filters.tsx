@@ -14,24 +14,24 @@ const Filters = async ({currentGenre, currentYear, currentRating}:IProps) => {
     
 
     return (
-        <form method="GET" action="/movies" className='flex gap-10 p-4 rounded-xl bg-gray-700/30'>
+        <form method="GET" action="/movies" className='flex gap-10 p-4 rounded-xl bg-gray-700/30 text-lg my-6 m-auto justify-center w-1/2'>
             <select name='genre' defaultValue={currentGenre || ''} className='px-4 py-2 rounded-full bg-gray-700'>
                 <option value=''>All Genres</option>
                 {genres && genres.map(genre=>(<option key={genre.id} value={genre.id}>{genre.name}</option>))}
             </select>
 
-            <select name='year' defaultValue={currentYear || ''}>
+            <select name='year' defaultValue={currentYear || ''} className='px-4 py-2 rounded-full bg-gray-700'>
                 <option value=''>All years</option>
                 {years.map(year=>(<option key={year} value={year}>{year}</option>))}
             </select>
 
-            <select name='rating' defaultValue={currentRating || ''}>
+            <select name='rating' defaultValue={currentRating || ''} className='px-4 py-2 rounded-full bg-gray-700'>
                 <option value=''>All ratings</option>
                 {Array.from({length:10}, (_,i)=>10-i)
                     .map(rating=>(<option key={rating} value={rating}>{rating}+</option>))}
             </select>
             <button type='submit' className='px-8 rounded-full border '>Apply</button>
-            <Link href='/movies' className='px-8 border rounded-full'>Reset</Link>
+            <Link href='/movies' className='px-8 border rounded-full flex items-center'>Reset</Link>
 
         </form>
 

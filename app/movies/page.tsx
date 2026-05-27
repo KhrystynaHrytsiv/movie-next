@@ -18,6 +18,7 @@ const MoviesPage = async ({searchParams}:IProp) => {
     const year = params.year ?? '';
     const rating = params.rating ?? '';
 
+
     return (
         <div>
             <Filters currentGenre={genre} currentYear={year} currentRating={rating} />
