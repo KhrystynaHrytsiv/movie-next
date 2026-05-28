@@ -24,7 +24,13 @@ const Movies = async ({page, query, genre, rating, year}:IProp)=> {
         const result = await getMoviesWithPosters(endpoint, page);
         movies = result.movies;
         totalPages = result.totalPages;
-    } else {
+    }
+    // else if(genre && year && rating){
+    //     const result = await getMoviesWithPosters(endpoint, page);
+    //     movies = result.movies;
+    //     totalPages = result.totalPages;
+    // }
+    else {
         const data = await generalService.get<IResponse>(endpoint);
         movies = data.results
         totalPages= data.total_pages
