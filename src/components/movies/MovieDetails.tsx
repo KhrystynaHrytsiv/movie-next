@@ -1,5 +1,5 @@
-import {photo, poster} from "@/src/constants/url";
-import {generalService} from "@/src/services/generalService";
+import {photo, poster, video_path} from "@/src/constants/url";
+import {generalService} from "@/src/service/generalService";
 import Link from "next/link";
 import Movie from "@/src/components/movies/Movie";
 import {IMDetails, IResCast, IResponse, IResVideo} from "@/src/interfaces";
@@ -13,18 +13,18 @@ const MovieDetails = async ({movie}:{movie:IMDetails}) => {
 
     return (
         <div className='w-full leading-relaxed'>
-            <div className="relative h-[450px] w-full overflow-hidden rounded-4xl my-20">
-                {trailer && (
+            {trailer && (
+            <div className="relative h-[450px] w-full overflow-hidden rounded-4xl mt-10">
                 <iframe
                     className="absolute inset-0 h-full w-full scale-150"
-                    src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailer.key}&start=3`}
-                    title={trailer.name} allow="autoplay; encrypted-media" allowFullScreen/>)}
+                    src={`${video_path}/${trailer.key}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailer.key}&start=3`}
+                    title={trailer.name} allow="autoplay; encrypted-media" allowFullScreen/>
                 <div className="relative z-10 flex h-full flex-col items-center justify-center text-white gap-15">
-                    <h1 className="text-7xl font-bold uppercase">{movie.title}</h1>
+                    <h1 className="text-7xl font-bold uppercase text-center">{movie.title}</h1>
                     <button className="rounded-full bg-white/20 px-10 py-4 text-xl backdrop-blur-md"><Link href={`/movies/${id}/trailer`}>Watch trailer</Link></button>
                 </div>
-            </div>
-            <div className='flex justify-between w-full'>
+            </div>)}
+            <div className='flex justify-between w-full mt-20'>
                 <div className='w-[400px]'>
                     <img src={`${poster}/${poster_path}`} alt={title} className='object-cover w-full rounded-3xl'/>
                     <div className='flex flex-col gap-6 text-lg px-6 w-full mt-6'>
@@ -61,7 +61,8 @@ const MovieDetails = async ({movie}:{movie:IMDetails}) => {
                     <h2 className='text-3xl font-semibold'>Preview</h2>
                     <p>{overview}</p>
                     <h2 className='text-3xl font-semibold mb-6'>Actors:</h2>
-                    <div className='grid grid-cols-2 gap-4 '>{actors && actors.slice(0, 10).map(actor =>
+                    <div className='grid grid-cols-2 gap-4 '>
+                        {actors && actors.slice(0, 10).map(actor =>
                         <div key={actor.id} className='flex gap-6'>
                             <img src={actor.profile_path ?`${poster}/${actor.profile_path}`: photo} alt={actor.name} className='h-30 w-30 rounded-full object-cover'/>
                             <p className='my-auto'>{actor.name}</p>

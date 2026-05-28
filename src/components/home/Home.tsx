@@ -6,6 +6,7 @@ import {useState} from "react";
 import {useRouter} from "next/navigation";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 const Home = ({movies}:{movies:IMovie[]}) => {
     const [activeMovie, setActiveMovie] = useState(movies[0]);
@@ -33,13 +34,13 @@ const Home = ({movies}:{movies:IMovie[]}) => {
     return (
         <div className='relative h-screen overflow-hidden'>
             <div className='absolute inset-0'>
-                <img src={`${originImg}${activeMovie.backdrop_path}`} className='w-full h-full object-cover transition-all duration-700'/>
-                <div className='absolute top-100 left-8 z-20 w-1/2 bg-black/50 rounded-lg p-6 '>
+                <img src={`${originImg}${activeMovie.backdrop_path}`} alt={activeMovie.title} className='w-full h-full object-cover transition-all duration-700'/>
+                <div className='absolute top-110 left-8 z-20 w-1/2 bg-black/50 rounded-lg p-6 text-gray-300'>
                     <h1 className='text-4xl font-bold mb-6'>{activeMovie.title}</h1>
                     <p className='text-2xl leading-relaxed'>{activeMovie.overview}</p>
                 </div>
             </div>
-            <div className='relative z-10 flex bottom-60 items-center h-full'>
+            <div className='relative z-10 flex bottom-50 items-center h-full'>
                 <button onClick={prevSlide} className='absolute left-4 z-20 w-14 h-14 rounded-full bg-black/50 text-white flex items-center justify-center'>
                     <ArrowBackIosNewIcon/>
                 </button>
@@ -51,8 +52,13 @@ const Home = ({movies}:{movies:IMovie[]}) => {
                                  className='relative min-w-[180px] h-[270px] rounded-2xl overflow-hidden'>
                                 <img src={`${poster}${movie.poster_path}`} alt={movie.title} className='w-full h-full object-cover cursor-pointer transition-transform duration-300 hover:scale-105'/>
                             {isOpen === movie.id &&
-                                <div className='absolute inset-0 bg-black/30 flex items-center justify-center transition-all duration-300'>
-                                <button onClick={() =>router.push(`/movies/${movie.id}`)} className='bg-white text-black text-xl font-semibold px-8 py-4 rounded-full hover:scale-105 transition-transform' > Details</button>
+                                <div className='absolute inset-0 bg-black/30 flex items-center justify-center transition-all duration-300 text-gray-300'>
+                                    <button onClick={() =>router.push(`/movies/${movie.id}`)} className='bg-white text-black text-xl font-semibold px-8 py-4 rounded-full hover:scale-105 transition-transform' > Details</button>
+                                    <button onClick={() =>router.push(`movies/${movie.id}/trailer`)} className={'top-2 left-2 absolute'}><PlayArrowIcon fontSize={'large'}/></button>
+                                    <div className='absolute bottom-3 left-2 flex gap-2 items-center text-xl bg-black/20 rounded px-2'>
+                                        <img src={'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/1280px-IMDB_Logo_2016.svg.png'} alt={'logo imdb'} className='h-[20px] w-[40px]'/>
+                                        <span>{movie.vote_average.toFixed(1)}</span>
+                                    </div>
                                 </div>}
                             </div>
 

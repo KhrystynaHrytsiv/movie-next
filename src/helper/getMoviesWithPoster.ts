@@ -1,4 +1,4 @@
-import { generalService } from "@/src/services/generalService";
+import { generalService } from "@/src/service/generalService";
 import { IResponse } from "@/src/interfaces";
 
 export async function getMoviesWithPosters(endpoint: string, currentPage: number){

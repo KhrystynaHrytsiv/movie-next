@@ -20,7 +20,7 @@ const MoviesPage = async ({searchParams}:IProp) => {
 
 
     return (
-        <div>
+        <div className='mt-20'>
             <Filters currentGenre={genre} currentYear={year} currentRating={rating} />
             <Movies page={page} query={query} genre={genre} year={year} rating={rating}/>
         </div>

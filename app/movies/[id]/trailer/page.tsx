@@ -6,6 +6,7 @@ interface IProp{
 }
 const TrailerPage:FC<IProp> = async ({params})=> {
     const {id} = await params;
+
     return (
         <div>
             <Trailer id={id}/>

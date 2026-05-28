@@ -3,5 +3,6 @@ const token = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ODg1NmUzMjQzODk3M2UyYzIxO
 const poster = 'https://image.tmdb.org/t/p/w500';
 const photo = 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png';
 const originImg = 'https://image.tmdb.org/t/p/original';
+const video_path = 'https://www.youtube.com/embed/';
 
-export {baseUrl, token, poster, photo, originImg}
+export {baseUrl, token, poster, photo, originImg, video_path}

@@ -1,8 +1,8 @@
 import Movie from "@/src/components/movies/Movie";
 import Pagination from "../pagination/Pagination";
 import {getMoviesWithPosters} from "@/src/helper/getMoviesWithPoster";
-import {generalService} from "@/src/services/generalService";
-import {IResponse} from "@/src/interfaces";
+import {generalService} from "@/src/service/generalService";
+import {IMovie, IResponse} from "@/src/interfaces";
 import {buildParams} from "@/src/helper/buildEndpoint";
 
 interface IProp{
@@ -13,24 +13,18 @@ interface IProp{
         rating:string,
 }
 const Movies = async ({page, query, genre, rating, year}:IProp)=> {
-    const params = buildParams({query, genre, year, rating, page}, {genre: 'with_genres', year: 'primary_release_year', rating: 'vote_average.gte'});
+    const params = buildParams({query, genre, year, rating}, {genre: 'with_genres', year: 'primary_release_year', rating: 'vote_average.gte'});
     let endpoint = query ? 'search/movie' : 'discover/movie';
     endpoint += `?${params.toString()}`;
 
-    let movies = [];
-    let totalPages = 1;
+    let movies: IMovie[];
+    let totalPages:number;
 
     if(query){
         const result = await getMoviesWithPosters(endpoint, page);
         movies = result.movies;
         totalPages = result.totalPages;
-    }
-    // else if(genre && year && rating){
-    //     const result = await getMoviesWithPosters(endpoint, page);
-    //     movies = result.movies;
-    //     totalPages = result.totalPages;
-    // }
-    else {
+    }else {
         const data = await generalService.get<IResponse>(endpoint);
         movies = data.results
         totalPages= data.total_pages

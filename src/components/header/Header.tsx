@@ -22,7 +22,7 @@ const Header = () => {
     };
 
     return (
-        <header className='w-full h-[100px] bg-[#c4c1c1] dark:bg-gray-800 opacity-80'>
+        <header className='w-full h-[80px] bg-[#c4c1c1] dark:bg-gray-800 opacity-80 fixed top-0 z-30'>
             <div className='w-3/4 h-full m-auto flex justify-between items-center text-2xl '>
                 <h2>TMDb</h2>
                 <ul className=' w-1/2 flex justify-evenly h-full items-center'>
@@ -34,7 +34,7 @@ const Header = () => {
                     <form method='GET' action='/movies' className='flex gap-4'>
                         <input type='text' name='query' placeholder='Search'
                             className={`bg-transparent outline-none border-b border-current  placeholder:text-current transition-all duration-300 overflow-hidden 
-                            ${showSearch ? 'w-[200px] opacity-100 px-2' : 'w-0 opacity-0'}`}/>
+                            ${showSearch ? 'w-[300px] opacity-100 px-2' : 'w-0 opacity-0'}`}/>
                         <button type='submit'><SearchIcon fontSize='large'/></button>
                     </form>
                 </div>
