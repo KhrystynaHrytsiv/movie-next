@@ -4,7 +4,7 @@ import {Switch} from "@mui/material";
 import {useEffect, useState} from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import {SiThemoviedatabase} from "react-icons/si";
-;
+
 
 const Header = () => {
     const [theme, setTheme] = useState('dark');
