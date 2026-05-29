@@ -32,7 +32,9 @@ const Movies = async ({page, query, genre, rating, year}:IProp)=> {
 
     return (
         <div className='grid grid-cols-5 w-4/5 m-auto my-6 gap-4'>
-            {movies.map(movie => <Movie key={movie.id} movie={movie}/>)}
+            {movies.length ? (movies.map(movie => (<Movie key={movie.id} movie={movie}/>)))
+                : (<div className='col-span-5 h-[300px] text-center text-3xl font-semibold py-20'> Sorry, no movies were found for {query}</div>
+                )}
             <div className='col-span-5'>
                 <Pagination currentPage={page} query={query} totalPages={totalPages} genre={genre} year={year} rating={rating}  />
             </div>

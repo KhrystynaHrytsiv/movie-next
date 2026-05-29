@@ -3,6 +3,8 @@ import Link from "next/link";
 import {Switch} from "@mui/material";
 import {useEffect, useState} from "react";
 import SearchIcon from '@mui/icons-material/Search';
+import {SiThemoviedatabase} from "react-icons/si";
+;
 
 const Header = () => {
     const [theme, setTheme] = useState('dark');
@@ -24,7 +26,7 @@ const Header = () => {
     return (
         <header className='w-full h-[80px] bg-[#c4c1c1] dark:bg-gray-800 opacity-80 fixed top-0 z-30'>
             <div className='w-3/4 h-full m-auto flex justify-between items-center text-2xl '>
-                <h2>TMDb</h2>
+                <SiThemoviedatabase className='h-[80px] w-[80px]'/>
                 <ul className=' w-1/2 flex justify-evenly h-full items-center'>
                     <li><Link href={'/'}>Home</Link></li>
                     <li><Link href={'/movies'}>Movies</Link></li>
