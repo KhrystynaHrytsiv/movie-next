@@ -29,26 +29,26 @@ const MovieDetails = async ({movie}:{movie:IMDetails}) => {
                     <img src={`${poster}/${poster_path}`} alt={title} className='object-cover w-full rounded-3xl'/>
                     <div className='flex flex-col gap-6 text-lg px-6 w-full mt-6'>
                         <div>
-                            <p className='text-neutral-400'>Release date</p>
-                            <p className='mt-1 text-neutral-100'>{release_date}</p>
+                            <p className='text-gray-700 dark:text-neutral-400'>Release date</p>
+                            <p className='mt-1 text-gray-900 dark:text-neutral-100'>{release_date}</p>
                         </div>
                         <div>
-                            <p className=' text-neutral-400'>Duration</p>
-                            <p className='mt-1 text-neutral-100'>{runtime} min</p>
+                            <p className=' text-gray-700 dark:text-neutral-400'>Duration</p>
+                            <p className='mt-1 text-gray-900 dark:text-neutral-100'>{runtime} min</p>
                         </div>
                         <div>
-                            <p className='text-neutral-400'>Country </p>
-                            {production_countries.slice(0, 1).map(country => <p key={country.name} className='mt-1 text-neutral-100'>{country.name}</p>)}
+                            <p className='text-gray-700 dark:text-neutral-400'>Country </p>
+                            {production_countries.slice(0, 1).map(country => <p key={country.name} className='mt-1 text-gray-900 dark:text-neutral-100'>{country.name}</p>)}
                         </div>
                         <div>
-                        <p className='text-neutral-400'>Companies</p>
-                        <div className='flex-wrap mt-1 text-neutral-100'>{production_companies.map((company, index) => <span
+                        <p className='text-gray-700 dark:text-neutral-400'>Companies</p>
+                        <div className='mt-1 text-gray-900 dark:text-neutral-100'>{production_companies.map((company, index) => <span
                             key={company.id}>{company.name}  {index !== production_companies.length - 1 && ', '} </span>)}
                         </div>
                         </div>
                         <div>
-                            <p className='text-neutral-400'>Rating</p>
-                            <p className='mt-1 text-neutral-100'>IMDb {vote_average.toFixed(1)}</p>
+                            <p className='text-gray-700 dark:text-neutral-400'>Rating</p>
+                            <p className='mt-1 text-gray-900 dark:text-neutral-100'>IMDb {vote_average.toFixed(1)}</p>
                         </div>
                     </div>
                 </div>
